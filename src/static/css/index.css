@@ -39,6 +39,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* heart */
+
 .heart {
     cursor: pointer;
     grid-column: 3;
@@ -48,8 +50,8 @@ body {
 }
 
 .heart-img{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     background : url(../img/heart.png), center center no-repeat;
     background-size: cover;
 
@@ -67,6 +69,39 @@ body {
     line-height: normal;
 }
 
+/* share */
+
+.share {
+    cursor: pointer;
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    align-self: end;
+
+    background: url("../img/share.png") center center no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+
+    margin : 10px;
+}
+
+/* download */
+
+.download {
+    cursor: pointer ;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+
+    background: url("../img/download.png") center center no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+
+    margin : 10px;
+}
 
 
 .all-img {
