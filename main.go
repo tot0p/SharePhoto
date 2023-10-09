@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
+	"sharephoto/controller"
 )
 
 func init() {
@@ -17,12 +18,29 @@ func init() {
 
 func main() {
 	r := gin.Default()
+
+	//load templates
+	r.LoadHTMLGlob("src/templates/*")
+
+	r.Static("/static", "./src/static")
+
+	// Index
+	r.GET("/", controller.IndexController)
+	r.GET("/index", controller.IndexController)
+
+	api := r.Group("/api")
+
+	api.POST("/upload", controller.UploadApiController)
+
+	//api.GET("/get/:uuid", controller.GetController)
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	if err := r.Run(":8080"); err != nil {
+
+	if err := r.Run(env.Get("PORT")); err != nil {
 		panic(err)
 	}
 }
