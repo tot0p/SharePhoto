@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+.card {
+    border-radius: 17px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+
+    width: 60vw;
+    height: 35vh;
+    flex-shrink: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* heart */
+
+.heart {
+    cursor: pointer;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    margin: 10px;
+}
+
+.heart-img{
+    width: 50px;
+    height: 50px;
+    background : url(../img/heart.png), center center no-repeat;
+    background-size: cover;
+
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.heart-img p {
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* share */
+
+.share {
+    cursor: pointer;
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    align-self: end;
+
+    background: url("../img/share.png") center center no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+
+    margin : 10px;
+}
+
+/* download */
+
+.download {
+    cursor: pointer ;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+
+    background: url("../img/download.png") center center no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+
+    margin : 10px;
+}
