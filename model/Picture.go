@@ -1,7 +1,9 @@
 package model
 
 type Picture struct {
-	Path        string `json:"path"`
-	AdderName   string `json:"adderName"`
-	Fingerprint string `json:"fingerprint"`
+	UUID        string   `json:"uuid"`
+	Path        string   `json:"path"`
+	AdderName   string   `json:"adderName"`
+	Fingerprint string   `json:"fingerprint"`
+	Like        []string `json:"like"`
 }

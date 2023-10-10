@@ -5,6 +5,7 @@ import (
 	"github.com/tot0p/env"
 	"sharephoto/controller"
 	"sharephoto/utils"
+	"sharephoto/utils/mongodb"
 )
 
 func init() {
@@ -16,6 +17,11 @@ func init() {
 
 	// create src/cdn folder if not exists
 	utils.CreateDirIfNotExists("src/cdn")
+
+	err = mongodb.NewMongoDB(env.Get("URI_MONGODB"))
+	if err != nil {
+		panic(err)
+	}
 
 	//gin.SetMode(gin.ReleaseMode)
 }
