@@ -41,6 +41,7 @@ func main() {
 	r.GET("/:uuid", controller.CollectionController)
 	r.POST("/:uuid/upload", controller.UploadPostController)
 	r.GET("/:uuid/img/:uuidImg", controller.ImgController)
+	r.GET("/:uuid/img/:uuidImg/like", controller.LikeController)
 
 	//sessionManager
 	r.POST("/fingerprint", controller.FingerPrintApiController)
