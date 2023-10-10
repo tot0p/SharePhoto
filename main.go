@@ -10,15 +10,12 @@ import (
 
 func init() {
 
-	err := env.Load()
-	if err != nil {
-		panic(err)
-	}
+	_ = env.Load()
 
 	// create src/cdn folder if not exists
 	utils.CreateDirIfNotExists("src/cdn")
 
-	err = mongodb.NewMongoDB(env.Get("URI_MONGODB"))
+	err := mongodb.NewMongoDB(env.Get("URI_MONGODB"))
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +45,7 @@ func main() {
 
 	//api.GET("/get/:uuid", controller.GetController)
 
-	if err := r.Run(env.Get("PORT")); err != nil {
+	if err := r.Run(":80"); err != nil {
 		panic(err)
 	}
 }
