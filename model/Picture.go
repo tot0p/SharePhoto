@@ -8,3 +8,8 @@ type Picture struct {
 	Like        []string `json:"like"`
 	UUIDEvent   string   `json:"uuidEvent"`
 }
+
+type SimplePicture struct {
+	UUID string `json:"uuid"`
+	Like int    `json:"like"`
+}

@@ -103,8 +103,37 @@ func CollectionController(ctx *gin.Context) {
 		}
 	}
 
+	pictures, err := mongodb.DB.Find(env.Get("DATABASE_NAME"), "Picture", bson.M{
+		"uuidEvent": uuid,
+	})
+
+	if err != nil {
+		ctx.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	var picturesList []model.SimplePicture
+
+	for _, k := range pictures {
+		var picture model.SimplePicture
+		if v, ok := k["uuid"]; ok {
+			picture.UUID = v.(string)
+		}
+		if v, ok := k["like"]; ok {
+			if v == nil {
+				picture.Like = 0
+			} else {
+				picture.Like = len(v.([]interface{}))
+			}
+		}
+		picturesList = append(picturesList, picture)
+	}
+
 	ctx.HTML(200, "index.html", gin.H{
 		"uuid":  uuid,
 		"event": event,
+		"list":  picturesList,
 	})
 }
