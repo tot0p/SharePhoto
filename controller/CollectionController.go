@@ -35,7 +35,6 @@ func CollectionController(ctx *gin.Context) {
 			UUID:          uuid,
 			StartDateTime: time.Now().Format(time.RFC3339),
 			EndDateTime:   time.Now().AddDate(0, 0, 1).Format(time.RFC3339),
-			Picture:       make([]model.Picture, 0),
 		})
 		if err != nil {
 			ctx.JSON(500, gin.H{
