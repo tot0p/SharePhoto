@@ -51,50 +51,20 @@
         </div>
     </div>
     <div class="all-img">
-        <div class="card" style="background-image: url('static/img/test.png')">
-            <div class="download">
-            </div>
+        {{range .list}}
+        <div class="card" style="background-image: url('{{.UUIDEvent}}/img/{{.UUID}}')">
+            <a class="download" href="/{{.UUIDEvent}}/img/{{.UUID}}" download="{{.UUID}}">
+            </a>
             <div class="heart">
                 <div class="heart-img" >
-                    <p>1</p>
+                    <p>{{.Like}}</p>
                 </div>
             </div>
-            <div class="share">
+            <div class="share" id="shareButton">
             </div>
         </div>
-        <div class="card" style="background-image: url('static/img/test.png')">
-            <div class="download">
-            </div>
-            <div class="heart">
-                <div class="heart-img" >
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="share">
-            </div>
-        </div>
-        <div class="card" style="background-image: url('static/img/test.png')">
-            <div class="download">
-            </div>
-            <div class="heart">
-                <div class="heart-img" >
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="share">
-            </div>
-        </div>
-        <div class="card" style="background-image: url('static/img/test.png')">
-            <div class="download">
-            </div>
-            <div class="heart">
-                <div class="heart-img" >
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="share">
-            </div>
-        </div>
+        {{end}}
+
     </div>
     <div class="button-bot">
         <form id="imageForm" enctype="multipart/form-data" method="POST" action="/{{.uuid}}/upload">
@@ -107,6 +77,27 @@
     </div>
     <div id="bottom-bar">
     </div>
+    <script>
+        // Code JavaScript pour gérer le bouton de partage
+        document.getElementById('shareButton').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Titre de la page à partager',
+                    text: 'Description de la page à partager',
+                    url: window.location.href
+                })
+                    .then(function() {
+                        console.log('Page partagée avec succès');
+                    })
+                    .catch(function(error) {
+                        console.error('Erreur lors du partage :', error);
+                    });
+            } else {
+                // Si l'API de partage n'est pas prise en charge, affichez un message de secours.
+                alert('L\'API de partage n\'est pas prise en charge par votre navigateur.');
+            }
+        });
+    </script>
     <script src="static/js/slide.js"></script>
     <script src="static/js/upload.js"></script>
 </body>

@@ -6,10 +6,11 @@ type Picture struct {
 	AdderName   string   `json:"adderName"`
 	Fingerprint string   `json:"fingerprint"`
 	Like        []string `json:"like"`
-	UUIDEvent   string   `json:"uuidEvent"`
+	UUIDEvent   string   `json:"uuidevent"`
 }
 
 type SimplePicture struct {
-	UUID string `json:"uuid"`
-	Like int    `json:"like"`
+	UUID      string `json:"uuid"`
+	Like      int    `json:"like"`
+	UUIDEvent string `json:"uuidevent"`
 }

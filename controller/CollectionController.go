@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"sharephoto/model"
 	"sharephoto/utils/mongodb"
 	"time"
@@ -104,7 +105,7 @@ func CollectionController(ctx *gin.Context) {
 	}
 
 	pictures, err := mongodb.DB.Find(env.Get("DATABASE_NAME"), "Picture", bson.M{
-		"uuidEvent": uuid,
+		"uuidevent": uuid,
 	})
 
 	if err != nil {
@@ -114,10 +115,13 @@ func CollectionController(ctx *gin.Context) {
 		return
 	}
 
+	fmt.Println("pictures", pictures)
+
 	var picturesList []model.SimplePicture
 
 	for _, k := range pictures {
 		var picture model.SimplePicture
+		fmt.Println("k", k)
 		if v, ok := k["uuid"]; ok {
 			picture.UUID = v.(string)
 		}
@@ -125,11 +129,16 @@ func CollectionController(ctx *gin.Context) {
 			if v == nil {
 				picture.Like = 0
 			} else {
-				picture.Like = len(v.([]interface{}))
+				picture.Like = len(v.(primitive.A))
 			}
+		}
+		if v, ok := k["uuidevent"]; ok {
+			picture.UUIDEvent = v.(string)
 		}
 		picturesList = append(picturesList, picture)
 	}
+
+	fmt.Println("picturesList", picturesList)
 
 	ctx.HTML(200, "index.html", gin.H{
 		"uuid":  uuid,
