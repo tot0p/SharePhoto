@@ -87,3 +87,8 @@ body {
     font-weight: 400;
     line-height: normal;
 }
+
+.resetButton {
+    background: none;
+    border : none;
+}

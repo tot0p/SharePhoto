@@ -8,6 +8,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
     <script src="static/js/Fingerprint.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="slide">
@@ -94,12 +95,17 @@
         </div>
     </div>
     <div class="button-bot">
-        <div class="center round-but">
-            <p class="label">+</p>
-        </div>
+        <form id="imageForm" enctype="multipart/form-data" method="POST" action="/{{.uuid}}/upload">
+            <div class="center round-but">
+                <input type="file" id="fileInput" name="img" style="display: none;" accept="image/*">
+                <button class="label resetButton" type="button" onclick="selectImage()">+</button>
+                <input type="submit" value="Envoyer" style="display: none;">
+            </div>
+        </form>
     </div>
     <div id="bottom-bar">
     </div>
     <script src="static/js/slide.js"></script>
+    <script src="static/js/upload.js"></script>
 </body>
 </html>

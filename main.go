@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"sharephoto/controller"
+	"sharephoto/utils"
 )
 
 func init() {
@@ -12,6 +13,9 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+
+	// create src/cdn folder if not exists
+	utils.CreateDirIfNotExists("src/cdn")
 
 	//gin.SetMode(gin.ReleaseMode)
 }
@@ -26,22 +30,19 @@ func main() {
 
 	// Index
 	r.GET("/", controller.IndexController)
-	r.GET("/index", controller.IndexController)
 
-	//sessionCreate
+	//collection
+	r.GET("/:uuid", controller.CollectionController)
+	r.POST("/:uuid/upload", controller.UploadPostController)
+
+	//upload
+	//r.GET("/upload", controller.UploadController)
+	//r.POST("/upload", controller.UploadPostController)
+
+	//sessionManager
 	r.POST("/fingerprint", controller.FingerPrintApiController)
 
-	api := r.Group("/api")
-
-	api.POST("/upload", controller.UploadApiController)
-
 	//api.GET("/get/:uuid", controller.GetController)
-
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
 
 	if err := r.Run(env.Get("PORT")); err != nil {
 		panic(err)

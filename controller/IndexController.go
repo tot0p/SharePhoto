@@ -1,10 +1,13 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	uuid2 "github.com/google/uuid"
+)
 
 func IndexController(ctx *gin.Context) {
 
-	//uuid := ctx.Param("uuid")
+	uuid := uuid2.New().String()
 
-	ctx.HTML(200, "index.html", gin.H{})
+	ctx.Redirect(302, "/"+uuid)
 }
