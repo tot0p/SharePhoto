@@ -28,6 +28,9 @@ func main() {
 	r.GET("/", controller.IndexController)
 	r.GET("/index", controller.IndexController)
 
+	//sessionCreate
+	r.POST("/fingerprint", controller.FingerPrintApiController)
+
 	api := r.Group("/api")
 
 	api.POST("/upload", controller.UploadApiController)
