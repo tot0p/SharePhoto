@@ -15,12 +15,14 @@ import (
 func UploadPostController(ctx *gin.Context) {
 	uuid := ctx.Param("uuid")
 
+	// get user from session and check if user is nil or not
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {
 		ctx.Redirect(302, "/"+uuid)
 		return
 	}
 
+	// get file from form
 	file, err := ctx.FormFile("img")
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -49,6 +51,7 @@ func UploadPostController(ctx *gin.Context) {
 		}
 	}(dst)
 
+	// save file
 	err = ctx.SaveUploadedFile(file, dst.Name())
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -57,6 +60,7 @@ func UploadPostController(ctx *gin.Context) {
 		return
 	}
 
+	// check if event exists
 	bs, err := mongodb.DB.Find(env.Get("DATABASE_NAME"), "Collection", bson.M{
 		"uuid": uuid,
 	})
@@ -82,6 +86,7 @@ func UploadPostController(ctx *gin.Context) {
 		UUIDEvent:   uuid,
 	}
 
+	// insert picture in database
 	_, err = mongodb.DB.InsertOne(env.Get("DATABASE_NAME"), "Picture", pict)
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -90,6 +95,7 @@ func UploadPostController(ctx *gin.Context) {
 		return
 	}
 
+	// redirect to collection
 	ctx.Redirect(302, "/"+uuid)
 
 }

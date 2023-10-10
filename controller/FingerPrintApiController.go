@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/tot0p/SharePhoto/model"
@@ -10,6 +9,7 @@ import (
 )
 
 func FingerPrintApiController(ctx *gin.Context) {
+	// Vérifiez si l'utilisateur est déjà connecté
 	if session.SessionsManager.IsLogged(ctx) {
 		ctx.JSON(http.StatusOK, gin.H{"success": "true"})
 		return
@@ -27,11 +27,7 @@ func FingerPrintApiController(ctx *gin.Context) {
 		return
 	}
 
-	fmt.Println("Received Browser Fingerprint:", fingerprint)
-
 	ip := ctx.ClientIP()
-
-	fmt.Println("Received IP:", ip)
 
 	User := model.User{
 		Ip:                    ip,

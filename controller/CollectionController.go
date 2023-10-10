@@ -16,6 +16,7 @@ func CollectionController(ctx *gin.Context) {
 
 	var event = new(model.Event)
 
+	// get collection from db
 	bs, err := mongodb.DB.Find(env.Get("DATABASE_NAME"), "Collection", bson.M{
 		"uuid": uuid,
 	})
@@ -112,7 +113,8 @@ func CollectionController(ctx *gin.Context) {
 		})
 		return
 	}
-
+	// generate list of pictures
+	// and top 3 pictures with most likes if there are more than 3 pictures
 	var picturesList []model.SimplePicture
 	var top3 []model.SimplePicture
 
@@ -155,8 +157,6 @@ func CollectionController(ctx *gin.Context) {
 		top1 = top3[1]
 		top2 = top3[2]
 	}
-
-	fmt.Println("top3", top3)
 
 	ctx.HTML(200, "index.html", gin.H{
 		"uuid":  uuid,

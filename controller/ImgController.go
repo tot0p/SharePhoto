@@ -45,6 +45,7 @@ func ImgController(ctx *gin.Context) {
 		return
 	}
 
+	// check if img exists
 	if len(img) == 0 {
 		ctx.JSON(404, gin.H{
 			"error": "img not found",

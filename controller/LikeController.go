@@ -63,6 +63,8 @@ func LikeController(ctx *gin.Context) {
 
 	var like2 = make([]string, 0)
 
+	// check if user already liked
+	// and if user already liked, remove like
 	if l, ok := img[0]["like"].(primitive.A); !ok {
 		img[0]["like"] = make([]string, 0)
 	} else {
@@ -87,6 +89,7 @@ func LikeController(ctx *gin.Context) {
 		}
 	}
 
+	// update like
 	_, err = mongodb.DB.UpdateOne(env.Get("DATABASE_NAME"), "Picture", bson.M{
 		"uuid": uuidImg,
 	}, bson.D{{Key: "$set", Value: bson.M{
