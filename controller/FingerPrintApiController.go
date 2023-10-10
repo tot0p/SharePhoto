@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/tot0p/SharePhoto/model"
+	"github.com/tot0p/SharePhoto/utils/session"
 	"net/http"
-	"sharephoto/model"
-	"sharephoto/utils/session"
 )
 
 func FingerPrintApiController(ctx *gin.Context) {

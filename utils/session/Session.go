@@ -3,7 +3,7 @@ package session
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"sharephoto/model"
+	"github.com/tot0p/SharePhoto/model"
 )
 
 // init initializes the sessions map

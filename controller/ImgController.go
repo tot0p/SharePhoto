@@ -3,9 +3,9 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/tot0p/SharePhoto/utils/mongodb"
 	"github.com/tot0p/env"
 	"go.mongodb.org/mongo-driver/bson"
-	"sharephoto/utils/mongodb"
 )
 
 func ImgController(ctx *gin.Context) {

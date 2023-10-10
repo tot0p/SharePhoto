@@ -1,4 +1,4 @@
-module sharephoto
+module github.com/tot0p/SharePhoto
 
 go 1.19
 

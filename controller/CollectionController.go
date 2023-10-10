@@ -3,11 +3,11 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/tot0p/SharePhoto/model"
+	"github.com/tot0p/SharePhoto/utils/mongodb"
 	"github.com/tot0p/env"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"sharephoto/model"
-	"sharephoto/utils/mongodb"
 	"time"
 )
 
@@ -15,8 +15,6 @@ func CollectionController(ctx *gin.Context) {
 	uuid := ctx.Param("uuid")
 
 	var event = new(model.Event)
-
-	fmt.Println("data base name", env.Get("DATABASE_NAME"))
 
 	bs, err := mongodb.DB.Find(env.Get("DATABASE_NAME"), "Collection", bson.M{
 		"uuid": uuid,
@@ -115,9 +113,8 @@ func CollectionController(ctx *gin.Context) {
 		return
 	}
 
-	fmt.Println("pictures", pictures)
-
 	var picturesList []model.SimplePicture
+	var top3 []model.SimplePicture
 
 	for _, k := range pictures {
 		var picture model.SimplePicture
@@ -136,13 +133,37 @@ func CollectionController(ctx *gin.Context) {
 			picture.UUIDEvent = v.(string)
 		}
 		picturesList = append(picturesList, picture)
+		if len(top3) < 3 {
+			top3 = append(top3, picture)
+		} else {
+			for i, v := range top3 {
+				if v.Like < picture.Like {
+					temp := top3[i]
+					top3[i] = picture
+					picture = temp
+				}
+			}
+		}
 	}
 
-	fmt.Println("picturesList", picturesList)
+	top := model.SimplePicture{}
+	top1 := model.SimplePicture{}
+	top2 := model.SimplePicture{}
+
+	if len(top3) >= 3 {
+		top = top3[0]
+		top1 = top3[1]
+		top2 = top3[2]
+	}
+
+	fmt.Println("top3", top3)
 
 	ctx.HTML(200, "index.html", gin.H{
 		"uuid":  uuid,
 		"event": event,
 		"list":  picturesList,
+		"top1":  top,
+		"top2":  top1,
+		"top3":  top2,
 	})
 }

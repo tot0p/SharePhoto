@@ -15,35 +15,35 @@
 <body>
     <div class="slide">
         <div class="wrapper">
-            <div id="top1" class="card items" style="background-image: url('static/img/test.png')">
-                <div class="download">
-                </div>
+            <div id="top2" class="card items" style="background-image: url('{{.top2.UUIDEvent}}/img/{{.top2.UUID}}')">
+                <a class="download" href="{{.top2.UUIDEvent}}/img/{{.top2.UUID}}" download="{{.top2.UUID}}">
+                </a>
                 <div class="heart">
-                    <div class="heart-img" >
-                        <p>1</p>
-                    </div>
+                    <a class="heart-img" href="{{.top2.UUIDEvent}}/img/{{.top2.UUID}}/like" >
+                        <p>{{.top2.Like}}</p>
+                    </a>
                 </div>
                 <div class="share">
                 </div>
             </div>
-            <div id="top2" class="card items" style="background-image: url('static/img/test.png')">
-                <div class="download">
-                </div>
+            <div id="top1" class="card items" style="background-image: url('{{.top1.UUIDEvent}}/img/{{.top1.UUID}}')">
+                <a class="download" href="{{.top1.UUIDEvent}}/img/{{.top1.UUID}}" download="{{.top1.UUID}}">
+                </a>
                 <div class="heart">
-                    <div class="heart-img" >
-                        <p>1</p>
-                    </div>
+                    <a class="heart-img" href="{{.top1.UUIDEvent}}/img/{{.top1.UUID}}/like">
+                        <p>{{.top1.Like}}</p>
+                    </a>
                 </div>
                 <div class="share">
                 </div>
             </div>
-            <div id="top3" class="card items" style="background-image: url('static/img/test.png')">
-                <div class="download">
-                </div>
+            <div id="top3" class="card items" style="background-image: url('{{.top3.UUIDEvent}}/img/{{.top3.UUID}}')">
+                <a class="download" href="{{.top3.UUIDEvent}}/img/{{.top3.UUID}}" download="{{.top3.UUID}}">
+                </a>
                 <div class="heart">
-                    <div class="heart-img" >
-                        <p>1</p>
-                    </div>
+                    <a class="heart-img"  href="{{.top3.UUIDEvent}}/img/{{.top3.UUID}}/like" >
+                        <p>{{.top3.Like}}</p>
+                    </a>
                 </div>
                 <div class="share">
                 </div>

@@ -3,13 +3,13 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	uuidGen "github.com/google/uuid"
+	"github.com/tot0p/SharePhoto/model"
+	"github.com/tot0p/SharePhoto/utils/mongodb"
+	"github.com/tot0p/SharePhoto/utils/session"
 	"github.com/tot0p/env"
 	"go.mongodb.org/mongo-driver/bson"
 	"os"
 	"path/filepath"
-	"sharephoto/model"
-	"sharephoto/utils/mongodb"
-	"sharephoto/utils/session"
 )
 
 func UploadPostController(ctx *gin.Context) {

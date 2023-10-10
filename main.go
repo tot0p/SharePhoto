@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/tot0p/SharePhoto/controller"
+	"github.com/tot0p/SharePhoto/utils"
+	"github.com/tot0p/SharePhoto/utils/mongodb"
 	"github.com/tot0p/env"
-	"sharephoto/controller"
-	"sharephoto/utils"
-	"sharephoto/utils/mongodb"
 )
 
 func init() {

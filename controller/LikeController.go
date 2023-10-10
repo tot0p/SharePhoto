@@ -3,11 +3,11 @@ package controller
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/tot0p/SharePhoto/utils/mongodb"
+	"github.com/tot0p/SharePhoto/utils/session"
 	"github.com/tot0p/env"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"sharephoto/utils/mongodb"
-	"sharephoto/utils/session"
 )
 
 func LikeController(ctx *gin.Context) {
